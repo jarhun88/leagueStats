@@ -1,5 +1,6 @@
 import requests
 import json
+import numpy as np
 
 # stephlovesbecca summoner ID
 myId = "Ry-EABKsOzN8GMcayrr_8zA7t1JzaSm51SZ6LZxj_ykj0w"
@@ -7,7 +8,7 @@ myId = "Ry-EABKsOzN8GMcayrr_8zA7t1JzaSm51SZ6LZxj_ykj0w"
 endIndex = "1"
 # LoL game version
 version = "10.9.1"
-api_key = "RGAPI-2c55a0ac-16be-4710-b0a8-344daa8b9c77"
+api_key = "RGAPI-61b16149-1db0-42a1-ad5e-2b7e222b1195"
 
 headers = {
     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.129 Safari/537.36",
@@ -21,17 +22,14 @@ headers = {
 champions = requests.get("http://ddragon.leagueoflegends.com/cdn/" + version + "/data/en_US/champion.json")
 champions = champions.json()
 champions = champions["data"]
-# print(champions)
 
 matchlist_url = "https://na1.api.riotgames.com/lol/match/v4/matchlists/by-account/" + myId + "?endIndex=" + endIndex + "&api_key=" + api_key
 response = requests.get(matchlist_url, headers=headers)
-print(response.json())
 response = response.json()["matches"]
 retVal = []
 
 for match in response:
     matchId = str(match["gameId"])
-    # print(matchId)
     match_url = "https://na1.api.riotgames.com/lol/match/v4/matches/" + matchId
     matchResponse = requests.get(match_url, headers=headers)
     matchResponse = matchResponse.json()
@@ -42,7 +40,8 @@ for match in response:
     matchResponse.pop("mapId")
     matchResponse.pop("platformId")
     matchResponse.pop("gameType")
-    
+    matchResponse.pop("gameVersion")
+
     for player in matchResponse["participants"]:
         player.pop("stats")
         player.pop("timeline")
@@ -50,36 +49,46 @@ for match in response:
         player.pop("spell2Id")
     
     for team in matchResponse["teams"]:
-        # print(team["bans"])
+        team.pop("vilemawKills")
+        team.pop("dominionVictoryScore")
+
         for cid in team["bans"]:
-            # print(cid["championId"])
             championId = cid["championId"]
             print(championId)
             for name, championInfo in champions.items():
-                # print(championInfo["key"])
-
                 if int(championInfo["key"]) == int(championId):
                     champName = championInfo["id"]
-                    # print(championInfo["id"])
                     cid["championId"] = champName
     
     for participants in matchResponse["participants"]:
-        # print(participants["championId"])
         championId = participants["championId"]
+
         for name, championInfo in champions.items():
-            # print(championInfo["key"])
-            
             if int(championId) == int(championInfo["key"]):
                 champName = championInfo["id"]
-                print(champName)
                 participants["championId"] = champName
 
+    participants = matchResponse["participants"].copy()
 
-    
-    # print(matchResponse)
+    for i in range(0, len(participants)):
+        participants[i]["summonerName"] = matchResponse["participantIdentities"][i]["player"]["summonerName"]
+
+    matchResponse.pop("participantIdentities")
+
+    participants1 = np.array(participants.copy())
+    participants1 = participants1[0:5].tolist()
+
+    participants2 = np.array(participants.copy())
+    participants2 = participants2[5: len(participants)].tolist()
+
+    matchResponse.pop("participants")
+
+    matchResponse["teams"][0].update({"participants" : participants1})
+    matchResponse["teams"][1]["participants"] = participants2
+
     retVal.append(matchResponse)
 
-# print(retVal)
+print(retVal)
 
 with open("league-stats.json", "w") as f:
     json.dump(retVal, f)

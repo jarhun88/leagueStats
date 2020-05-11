@@ -1,0 +1,152 @@
+[
+  {
+    "gameId": 3413708968,
+    "seasonId": 13,
+    "gameVersion": "10.9.318.6057",
+    "gameMode": "CLASSIC",
+    "teams": [
+      {
+        "teamId": 100,
+        "win": "Win",
+        "firstBlood": true,
+        "firstTower": true,
+        "firstInhibitor": true,
+        "firstBaron": true,
+        "firstDragon": true,
+        "firstRiftHerald": true,
+        "towerKills": 11,
+        "inhibitorKills": 4,
+        "baronKills": 2,
+        "dragonKills": 4,
+        "vilemawKills": 0,
+        "riftHeraldKills": 2,
+        "dominionVictoryScore": 0,
+        "bans": [
+          {
+            "championId": "Darius",
+            "pickTurn": 1
+          },
+          {
+            "championId": "Illaoi",
+            "pickTurn": 2
+          },
+          {
+            "championId": "Yasuo",
+            "pickTurn": 3
+          },
+          {
+            "championId": "Mordekaiser",
+            "pickTurn": 4
+          },
+          {
+            "championId": "Blitzcrank",
+            "pickTurn": 5
+          }
+        ],
+        "participants": [
+          {
+            "participantId": 1,
+            "summonerName": "rnbandy",
+            "teamId": 100,
+            "championId": "Teemo"
+          },
+          {
+            "participantId": 2,
+            "summonerName": "David Hoff",
+            "teamId": 100,
+            "championId": "Malphite"
+          },
+          {
+            "participantId": 3,
+            "summonerName": "ShaneB0twin",
+            "teamId": 100,
+            "championId": "Jhin"
+          },
+          {
+            "participantId": 4,
+            "summonerName": "Norrind",
+            "teamId": 100,
+            "championId": "Morgana"
+          },
+          {
+            "participantId": 5,
+            "summonerName": "Alan bro",
+            "teamId": 100,
+            "championId": "MasterYi"
+          }
+        ]
+      },
+      {
+        "teamId": 200,
+        "win": "Fail",
+        "firstBlood": false,
+        "firstTower": false,
+        "firstInhibitor": false,
+        "firstBaron": false,
+        "firstDragon": false,
+        "firstRiftHerald": false,
+        "towerKills": 4,
+        "inhibitorKills": 0,
+        "baronKills": 1,
+        "dragonKills": 3,
+        "vilemawKills": 0,
+        "riftHeraldKills": 0,
+        "dominionVictoryScore": 0,
+        "bans": [
+          {
+            "championId": "LeeSin",
+            "pickTurn": 6
+          },
+          {
+            "championId": "Fizz",
+            "pickTurn": 7
+          },
+          {
+            "championId": "Zed",
+            "pickTurn": 8
+          },
+          {
+            "championId": "Yasuo",
+            "pickTurn": 9
+          },
+          {
+            "championId": "MonkeyKing",
+            "pickTurn": 10
+          }
+        ],
+        "participants": [
+          {
+            "participantId": 6,
+            "summonerName": "SpartanGoku",
+            "teamId": 200,
+            "championId": "Nami"
+          },
+          {
+            "participantId": 7,
+            "summonerName": "Kaomiz",
+            "teamId": 200,
+            "championId": "Zoe"
+          },
+          {
+            "participantId": 8,
+            "summonerName": "GodofWarOdin",
+            "teamId": 200,
+            "championId": "Amumu"
+          },
+          {
+            "participantId": 9,
+            "summonerName": "VincePwns",
+            "teamId": 200,
+            "championId": "Ezreal"
+          },
+          {
+            "participantId": 10,
+            "summonerName": "stephlovesbecca",
+            "teamId": 200,
+            "championId": "Gnar"
+          }
+        ]
+      }
+    ]
+  }
+]
